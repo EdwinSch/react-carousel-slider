@@ -1,11 +1,11 @@
-import { shortList, list, longList } from "../data";
+import { testList, longList } from "../data";
 import { useEffect, useState } from "react";
 
 import { FaQuoteRight } from "react-icons/fa";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 
 const Carousel = () => {
-  const [people, setPeople] = useState(list);
+  const [people, setPeople] = useState(longList);
   const [currentPerson, setCurrentPerson] = useState(0);
 
   // Manual play
@@ -32,7 +32,7 @@ const Carousel = () => {
   useEffect(() => {
     let sliderId = setInterval(() => {
       nextSlide();
-    }, 2000);
+    }, 3000);
     return () => {
       clearInterval(sliderId);
     };

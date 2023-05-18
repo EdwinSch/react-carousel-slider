@@ -1,5 +1,5 @@
 import { shortList, list, longList } from "../data";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { FaQuoteRight } from "react-icons/fa";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
@@ -7,6 +7,8 @@ import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 const Carousel = () => {
   const [people, setPeople] = useState(list);
   const [currentPerson, setCurrentPerson] = useState(0);
+
+  // Manual play
 
   const prevSlide = () => {
     if (currentPerson === 0) {
@@ -24,6 +26,17 @@ const Carousel = () => {
     }
     setCurrentPerson(currentPerson + 1);
   };
+
+  // Auto play
+
+  useEffect(() => {
+    let sliderId = setInterval(() => {
+      nextSlide();
+    }, 2000);
+    return () => {
+      clearInterval(sliderId);
+    };
+  }, [currentPerson]);
 
   return (
     <section className="slider-container">
